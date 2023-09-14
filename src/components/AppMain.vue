@@ -1,5 +1,5 @@
 <script>
-import AppCardList from "./components/AppCardList.vue";
+import AppCardList from "./AppCardList.vue";
 
 export default {
   data() {
