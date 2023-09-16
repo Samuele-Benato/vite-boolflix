@@ -12,14 +12,16 @@ export default {
   },
 
   methods: {
-    fetchMovies(endpoint) {
+    fetchMovies(endpoint, queryString) {
       axios
         .get(endpoint, {
-          params: { api_key: this.store.api_key, query: "anelli" },
+          params: {
+            api_key: this.store.api_key,
+            query: queryString,
+          },
         })
         .then((response) => {
-          console.log(response.data.results);
-          const moviesData = response.data.results.map((movie) => {
+          this.store.movies = response.data.results.map((movie) => {
             const {
               id,
               original_language,
@@ -27,34 +29,28 @@ export default {
               title,
               poster_path,
               vote_average,
+              overview,
             } = movie;
             return {
               id,
-              original_language,
+              language: original_language,
               original_title,
               title,
-              poster_path,
-              vote_average,
+              urlImage: "https://image.tmdb.org/t/p/w342" + poster_path,
+              vote: Math.ceil(vote_average / 2),
+              overview,
             };
           });
-          return {
-            id,
-            original_language,
-            original_title,
-            title,
-            poster_path,
-            vote_average,
-          };
         });
     },
 
-    fetchSeries(endpoint) {
+    fetchSeries(endpoint, queryString) {
       axios
         .get(endpoint, {
-          params: { api_key: this.store.api_key, query: "anelli" },
+          params: { api_key: this.store.api_key, query: queryString },
         })
         .then((response) => {
-          const seriesData = response.data.results.map((serie) => {
+          this.store.series = response.data.results.map((serie) => {
             const {
               id,
               original_language,
@@ -62,25 +58,24 @@ export default {
               name,
               poster_path,
               vote_average,
+              overview,
             } = serie;
             return {
               id,
-              original_language,
-              original_name,
-              name,
-              poster_path,
-              vote_average,
+              language: original_language,
+              original_title: original_name,
+              title: name,
+              urlImage: "https://image.tmdb.org/t/p/w342" + poster_path,
+              vote: Math.ceil(vote_average / 2),
+              overview,
             };
           });
-          return {
-            id,
-            original_language,
-            original_name,
-            name,
-            poster_path,
-            vote_average,
-          };
         });
+    },
+
+    startSearch(queryString) {
+      this.fetchMovies(store.apiUrlMovies, queryString);
+      this.fetchSeries(store.apiUrlSeries, queryString);
     },
   },
 
@@ -97,8 +92,11 @@ export default {
 </script>
 
 <template>
-  <AppHeader />
+  <AppHeader @search="startSearch" />
+
   <AppMain />
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+@use "./assets/style.scss" as *;
+</style>
