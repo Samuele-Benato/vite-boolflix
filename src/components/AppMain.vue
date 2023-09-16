@@ -23,5 +23,6 @@ main {
   background-color: #272727;
   min-height: 100vh;
   height: 100%;
+  padding-bottom: 1.5rem;
 }
 </style>
