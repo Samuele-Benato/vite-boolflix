@@ -28,11 +28,24 @@ export default {
   <!-- CARD -->
   <div class="col">
     <div class="card">
-      <img :src="imageUrl" alt="film image" />
+      <img class="cover-image" :src="imageUrl" alt="film image" />
       <div class="card-body">
-        <div>Title : {{ cardInfo.original_title }} {{ title }}</div>
-        <div>Language : {{ cardInfo.language }}</div>
-        <div>Vote : {{ cardInfo.vote }}</div>
+        <div>
+          <sapn class="indication">Title :</sapn> {{ cardInfo.original_title }}
+          {{ title }}
+        </div>
+        <div>
+          <img
+            class="flag-icon"
+            :src="
+              'https://www.countryflagicons.com/SHINY/32/' +
+              cardInfo.language.toUpperCase() +
+              '.png'
+            "
+            alt="Icon language not found"
+          />
+        </div>
+        <div><sapn class="indication">Vote :</sapn> {{ cardInfo.vote }}</div>
         <div
           v-if="cardInfo.overview"
           class="accordion accordion-flush"
@@ -48,7 +61,7 @@ export default {
                 aria-expanded="false"
                 aria-controls="flush-collapseOne"
               >
-                Trama
+                <sapn class="indication">Trama </sapn>
               </button>
             </h2>
             <div
@@ -70,17 +83,30 @@ export default {
 
 <style lang="scss">
 .card {
+  margin: 0.75rem;
   flex-grow: 1;
   min-height: 450px;
   max-height: 450px;
   overflow: hidden;
   background-color: #dd202e;
   color: white;
+  font-weight: 800;
   &:hover {
     overflow: auto;
   }
 
-  img {
+  .indication {
+    color: #272727;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .flag-icon {
+    width: 30px;
+    aspect-ratio: 1;
+  }
+
+  .cover-image {
     min-height: 340px;
     max-height: 340px;
   }
@@ -88,9 +114,11 @@ export default {
   .accordion-item {
     background-color: #dd202e;
     color: white;
+
     button {
       background-color: #dd202e;
       color: white;
+      padding: 0;
     }
   }
 }
