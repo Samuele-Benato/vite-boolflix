@@ -91,6 +91,7 @@ export default {
   background-color: #dd202e;
   color: white;
   font-weight: 800;
+  box-shadow: 5px 5px 5px #dd202e;
   &:hover {
     overflow: auto;
   }
@@ -107,8 +108,8 @@ export default {
   }
 
   .cover-image {
-    min-height: 340px;
-    max-height: 340px;
+    min-height: 450px;
+    max-height: 450px;
   }
 
   .accordion-item {
