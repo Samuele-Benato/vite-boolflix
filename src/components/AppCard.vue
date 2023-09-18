@@ -81,7 +81,7 @@ export default {
               :data-bs-parent="'#' + cardInfo.id"
               style=""
             >
-              <div class="accordion-body">
+              <div class="accordion-body px-0">
                 {{ cardInfo.overview }}
               </div>
             </div>
