@@ -21,8 +21,8 @@ export default {
 <style lang="scss" scoped>
 main {
   background-color: #272727;
-  min-height: 100vh;
-  height: 100%;
+
+  min-height: calc(100vh - (134px + 86px));
   padding-bottom: 1.5rem;
 }
 </style>

@@ -37,16 +37,10 @@ export default {
               v-model="term"
               class="form-control me-2"
               type="search"
-              placeholder="Search"
+              placeholder="Cerca un titolo..."
               aria-label="Search"
             />
-            <button
-              @click="changeTitle()"
-              class="btn btn-outline-danger"
-              type="submit"
-            >
-              Search...
-            </button>
+            <button class="btn btn-outline-danger" type="submit">INVIA</button>
           </form>
         </div>
       </nav>
