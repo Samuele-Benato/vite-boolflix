@@ -103,25 +103,30 @@ export default {
   background-color: #dd202e;
   color: white;
   font-weight: 800;
-  box-shadow: 5px 5px 5px #dd202e;
+
   &:hover {
-    overflow: auto;
+    transform: scale(1.05);
+    box-shadow: 5px 5px 5px #dd202e;
+    .cover-image {
+      opacity: 0;
+    }
 
     .card-body {
-      display: block;
+      min-height: 450px;
+      max-height: 450px;
 
       opacity: 1;
-      background-color: #dd202e;
-      transition: opacity, 0.5s;
+      transition: opacity, 2s;
+      overflow: auto;
     }
   }
 
   .card-body {
+    vertical-align: middle;
     position: absolute;
     top: 0;
     left: 0;
     opacity: 0;
-    display: none;
   }
 
   .indication {
@@ -140,9 +145,6 @@ export default {
     max-height: 450px;
     opacity: 1;
     transition: opacity 0.5s;
-    &:hover {
-      opacity: 0;
-    }
   }
 
   .accordion-item {

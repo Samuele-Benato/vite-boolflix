@@ -17,7 +17,12 @@ export default {
 
 <template>
   <div class="container">
-    <h2 class="text-center p-4 text-white">Movies</h2>
+    <h3 id="initial-title" class="text-center p-4 text-white">
+      Fai la tua prima ricerca
+    </h3>
+    <h2 id="category-title" class="text-center p-4 text-white d-none">
+      Movies
+    </h2>
     <div
       class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 justify-content-center align-items-center g-2"
     >
@@ -28,7 +33,9 @@ export default {
       />
     </div>
 
-    <h2 class="text-center p-4 text-white">Series</h2>
+    <h2 id="category-title" class="text-center p-4 text-white d-none">
+      Series
+    </h2>
     <div
       class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 justify-content-center align-items-center g-2"
     >

@@ -1,11 +1,21 @@
 <script>
+const initialTitle = document.getElementById("initial-title");
+const categoryTitle = document.getElementById("category-title");
 export default {
   data() {
     return {
       term: "",
     };
   },
+
   emits: ["serch"],
+
+  methods: {
+    changeTitle() {
+      categoryTitle.classList.add("d-block");
+      initialTitle.classList.add("d-none");
+    },
+  },
 };
 </script>
 
@@ -30,7 +40,11 @@ export default {
               placeholder="Search"
               aria-label="Search"
             />
-            <button class="btn btn-outline-danger" type="submit">
+            <button
+              @click="changeTitle()"
+              class="btn btn-outline-danger"
+              type="submit"
+            >
               Search...
             </button>
           </form>
