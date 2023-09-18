@@ -21,6 +21,14 @@ export default {
       }
     },
   },
+
+  methods: {
+    getStar(n) {
+      return n <= this.cardInfo.vote
+        ? "fa-solid fa-star"
+        : "fa-regular fa-star";
+    },
+  },
 };
 </script>
 
@@ -30,13 +38,13 @@ export default {
     <div class="card">
       <img class="cover-image" :src="imageUrl" alt="film image" />
       <div class="card-body">
-        <div>
+        <div class="border-bottom pb-2">
           <sapn class="indication">Title :</sapn> {{ cardInfo.original_title }}
           {{ title }}
         </div>
         <div>
           <img
-            class="flag-icon"
+            class="flag-icon mt-2"
             :src="
               'https://www.countryflagicons.com/SHINY/32/' +
               cardInfo.language.toUpperCase() +
@@ -45,7 +53,10 @@ export default {
             alt="Icon language not found"
           />
         </div>
-        <div><sapn class="indication">Vote :</sapn> {{ cardInfo.vote }}</div>
+        <div class="py-2">
+          <sapn class="indication">Vote : </sapn>
+          <font-awesome-icon :icon="getStar(n)" v-for="n in 5" />
+        </div>
         <div
           v-if="cardInfo.overview"
           class="accordion accordion-flush"
@@ -54,7 +65,7 @@ export default {
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button
-                class="accordion-button collapsed"
+                class="accordion-button collapsed py-2 border-bottom"
                 type="button"
                 data-bs-toggle="collapse"
                 :data-bs-target="'#flush-collapseOne' + cardInfo.id"
@@ -83,6 +94,7 @@ export default {
 
 <style lang="scss">
 .card {
+  position: relative;
   margin: 0.75rem;
   flex-grow: 1;
   min-height: 450px;
@@ -94,6 +106,22 @@ export default {
   box-shadow: 5px 5px 5px #dd202e;
   &:hover {
     overflow: auto;
+
+    .card-body {
+      display: block;
+
+      opacity: 1;
+      background-color: #dd202e;
+      transition: opacity, 0.5s;
+    }
+  }
+
+  .card-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    display: none;
   }
 
   .indication {
@@ -110,6 +138,11 @@ export default {
   .cover-image {
     min-height: 450px;
     max-height: 450px;
+    opacity: 1;
+    transition: opacity 0.5s;
+    &:hover {
+      opacity: 0;
+    }
   }
 
   .accordion-item {

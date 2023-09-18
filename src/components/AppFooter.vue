@@ -10,7 +10,7 @@
 
 <style lang="scss" scoped>
 footer {
-  margin: 1.5rem 0;
+  padding: 1.5rem 0;
   background-color: #f8f9fa;
   .container {
     display: flex;
